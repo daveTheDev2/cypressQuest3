@@ -23,6 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('SimilarRequest', (query) => {
+// 
+Cypress.Commands.add('SimilarRequest', (query,) => {
     cy.request(`https://tastedive.com/api/similar?q=${query.Name}`)
 }) 
+
+Cypress.Commands.add('SimilarRequest2', (query, type, limit ) => {
+    cy.request({
+        url: 'https://tastedive.com/api/similar',
+        qs: {
+            q: query,
+            type: type,
+            limit: limit,
+          //  k: Cypress.env('API_Key') 
+        }
+    }) 
+})
